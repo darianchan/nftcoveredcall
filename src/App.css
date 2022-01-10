@@ -1,0 +1,70 @@
+  #tableWrapper {
+    margin: auto;
+    width: 85%;
+    height: 500px;
+    border: 3px solid rgb(209, 47, 115);
+    padding: 10px;
+    margin-top: 75px;
+    overflow-y: scroll;
+  }
+
+  td {
+    padding: 0 20px;
+  }
+  #optionsTableHeader {
+    font-weight: bold;
+  }
+
+  #optionsTableRow {
+    outline: thin solid rgb(209, 47, 115);
+  }
+
+  td {
+    padding-top: 5px;
+  }
+
+  .action {
+    display: flex;
+  }
+
+  form {
+    margin: auto;
+  }
+
+  #buttonWrapper {
+    margin: auto;
+    margin-top: 100px;
+    width: 75%;
+    text-align: center;
+  }
+
+  button {
+    border: none;
+    font-size: 16px;
+    border-radius: 6px;
+    padding: 8px;
+    margin: 5px;
+    background-color: rgb(209, 47, 115);
+    color: white;
+    font-family: Helvetica;
+    font-weight: 100;
+  }
+
+  body {
+    color: rgb(180, 180, 180);
+    background-color: #000000;
+    background-image: linear-gradient(147deg, #000000 0%, #434343 74%);
+    
+  }
+
+  .inputButton {
+    background-color: rgb(209, 47, 115);
+    color: white;
+    font-family: Helvetica;
+    font-weight: 100;
+    font-size: 15px;
+    padding: 6px;
+    margin: 5px;
+    border-radius: 6px;
+    border: none;
+  }
