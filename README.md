@@ -14,9 +14,11 @@ The solidity contract that implements the functionality is in the CoveredCall.so
  - Right now, it only supports the nft at address "TODO: fill in test nft address here", as a MVP of the product. In the future, this project should grow to be able to dynamically support any verified nft through etherscan.
 
  ## How to Intall and Run the Project
- Clone the project to your local machine. In a .env file, set your API_URL = "your API URL here", PRIVATE_KEY = "your private key here", API_KEY = "your API KEY here", and COVEREDCALL_ADDRESS = "TODO: put the address of the deployed contract here from mainnet"
+ - Clone the project to your local machine. In a .env file, set your API_URL = "your API URL here", PRIVATE_KEY = "your private key here", API_KEY = "your API KEY here", and COVEREDCALL_ADDRESS = "TODO: put the address of the deployed contract here from mainnet"
+ - If you would like to contribute to experiment with this repo locally on the testnet, you can fill in the credientials above and deploy through Alchemy's api
 
- ### How to mint + approve nft and create and buy a call option
+ ### How to mint + approve nft and create, buy, and execute a call option
+ - first you will need to click on the connect to metamask button and connect to you wallet. If you are using the repo on mainnet, please be careful before signing any transactions, as they will cost you real eth
  - click on the create covered call button
  - click on mint button - this will mint you an nft from the test nft deployed
  - input the id of the nft that you just minted and click the approve button (found after you hit create covered call)
