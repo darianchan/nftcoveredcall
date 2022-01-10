@@ -47,7 +47,6 @@ class OptionChain extends React.Component {
     this.onDisplayBuyOption = this.onDisplayBuyOption.bind(this);
     this.onDisplayExerciseOption = this.onDisplayExerciseOption.bind(this);
     this.onDisplayCalimNFT = this.onDisplayCalimNFT.bind(this);
-    this.testing = this.testing.bind(this);
   }
 
   componentDidMount() {
@@ -245,13 +244,6 @@ class OptionChain extends React.Component {
     this.setState({ userChoice: 4 });
   }
 
-  // TODO remove this after deploying
-  testing() {
-    let date = new Date(1641514354 * 1000);
-    console.log(date);
-    console.log(date.toDateString());
-  }
-
   render() {
     const { userChoice } = this.state;
     return (
@@ -291,7 +283,6 @@ class OptionChain extends React.Component {
         ) : null}
         {this.state.message ? <div>{this.state.message}</div> : null}
         <OptionsTable currentOptions={this.state.currentOptions} />
-        <button onClick={this.testing}>testing</button>
         <button onClick={this.connectToMetamask}>Connect to metamask</button>
       </div>
     );

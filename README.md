@@ -16,6 +16,9 @@ The solidity contract that implements the functionality is in the CoveredCall.so
  ## How to Intall and Run the Project
  - Clone the project to your local machine. In a .env file, set your API_URL = "your API URL here", PRIVATE_KEY = "your private key here", API_KEY = "your API KEY here", and COVEREDCALL_ADDRESS = "TODO: put the address of the deployed contract here from mainnet"
  - If you would like to contribute to experiment with this repo locally on the testnet, you can fill in the credientials above and deploy through Alchemy's api
+ - run "npm install" to install all dependencies
+ - run "npm run start" to start up the front end
+ - go to local host 3000 and you should see the app up and running there
 
  ### How to mint + approve nft and create, buy, and execute a call option
  - first you will need to click on the connect to metamask button and connect to you wallet. If you are using the repo on mainnet, please be careful before signing any transactions, as they will cost you real eth
