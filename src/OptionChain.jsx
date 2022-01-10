@@ -1,3 +1,6 @@
+require('dotenv').config();
+const { REACT_APP_NFT_ADDRESS, REACT_APP_COVEREDCALL_ADDRESS } = process.env;
+
 import { ethers } from "ethers";
 import React, { useState } from "react";
 import CoveredCall from "./CoveredCall.json";
@@ -7,8 +10,8 @@ import BuyCallOption from "./BuyOption";
 import ExerciseOption from "./ExerciseOption";
 import CreateCoveredCall from "./CreateCoveredCall";
 import ClaimNFT from "./ClaimNFT";
-const coveredCallAddress = "0x6607825076fE290297Ab2c2bBfD0D7AdDeFBE893";
-const nftAddress = "0x3241c2CcDde79faE54851B6f95922966c15C5a29"; // TODO: will have to make this dynamic to support all nfts in future implementation
+const coveredCallAddress = REACT_APP_COVEREDCALL_ADDRESS;
+const nftAddress = REACT_APP_NFT_ADDRESS; // TODO: will have to make this dynamic to support all nfts in future implementation
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 const coveredCall = new ethers.Contract(
@@ -50,13 +53,7 @@ class OptionChain extends React.Component {
   }
 
   componentDidMount() {
-    // this.go();
     this.renderInitialOptions();
-  }
-
-  async go() {
-    await this.connectToMetamask();
-    console.log(signer);
   }
 
   async connectToMetamask() {
@@ -101,7 +98,6 @@ class OptionChain extends React.Component {
       this.state.strikePrice.toString()
     );
 
-    // do you need this if statement here?
     if (typeof window.ethereum !== "undefined") {
       try {
         this.setState({ message: "creating covered call" });
@@ -173,8 +169,6 @@ class OptionChain extends React.Component {
     let premiumPrice = ethers.utils.formatEther(optionValues[4].toString());
     let buyerAddress = optionValues[5];
     let sellerAddress = optionValues[6];
-
-    // TODO: fix the time rendering here
 
     let joined = this.state.currentOptions.concat({
       optionID: optionID,

@@ -32,12 +32,11 @@ contract CoveredCall is ERC721 {
     function createCoveredCall(address _nftAddress, uint _nftID, uint _strikePrice, uint _expirationTime, uint _premiumPrice) public returns(uint) {
         // require you to own nft and then transfer it to the contract as collateral
         require(IERC721(_nftAddress).ownerOf(_nftID) == msg.sender, "must own the NFT to sell a call option"); // this line handles the case where someone tries to create another option for the same after time is expirated. You will need to claim unexercised option first because this contract still owns the nft
-        require(_expirationTime <= 86400 * 365, "option expiration must be less than 1 year");
-        require(_expirationTime >= 86400, "option expiration must be greater than 1 day"); // change to 1 week?
+        require(_expirationTime <= 86400 * 365, "option expiration must be less than 1 year"); // 1 year maximum expiration
+        require(_expirationTime >= 86400 * 7, "option expiration must be greater than 1 day"); // 7 days minimum expiration
         require(IERC721(_nftAddress).getApproved(_nftID) == address(this), "must approve nft to be transfered");
         IERC721(_nftAddress).transferFrom(msg.sender, address(this), _nftID); // this contract now owns the nft
 
-        // create a call option
         optionID++;
         Option memory option = Option({
             buyer: address(0), // address(0) means that the call option is created, but not yet sold
@@ -90,7 +89,6 @@ contract CoveredCall is ERC721 {
         require(success);
         IERC721(option.nftAddress).transferFrom(address(this), msg.sender, option.nftID);
 
-        // TODO could break this out into another function beauce it gets reused and cleaner
         delete optionsCreatedByUser[option.seller][_optionID];
         delete optionsCreatedByNFT[_nftAddress][_optionID];
         _burn(_optionID);
@@ -112,7 +110,7 @@ contract CoveredCall is ERC721 {
         delete optionsCreatedByUser[option.seller][_optionID];
         delete optionsCreatedByNFT[_nftAddress][_optionID];
         
-        // if option was bought, (minted) then burn
+        // if option was bought, (minted) then burnwi
         if (option.buyer != address(0)) {
             _burn(_optionID);
         }
@@ -121,7 +119,7 @@ contract CoveredCall is ERC721 {
     // you can't return a struct in solidity because they aren't a real object
     function getOption(address _nftAddress, uint _optionID) public view  returns(address, uint, uint, uint, uint, address, address){
         Option storage option = optionsCreatedByNFT[_nftAddress][_optionID];
-        return (option.nftAddress, option.nftID, option.strikePrice, option.expirationTime, option.premiumPrice, option.buyer, option.seller);        
+        return (option.nftAddress, option.nftID, option.strikePrice, option.expirationTime, option.premiumPrice, option.buyer, option.seller);
     }
 
     receive() external payable {}
