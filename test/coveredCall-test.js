@@ -115,7 +115,7 @@ describe("CoveredCall", function () {
 
     describe("claim NFT from unexercised option", function() {
       
-      it("should allow option creator to claim back nft from unexercised option after expiration", async function() {
+      it("should allow coveredCall creator to claim back NFT from unexercised option after expiration", async function() {
         // increase time by 31 dyas so option expires
         await ethers.provider.send("evm_increaseTime", [86400 * 31])
         await ethers.provider.send("evm_mine")
@@ -124,17 +124,17 @@ describe("CoveredCall", function () {
         expect(owner).to.eq(accounts[0].address);
       })
 
-      it("should not allow option creator to claim back nft before expiration", async function() {
+      it("should not allow option creator to claim back NFT before expiration", async function() {
         await expect(coveredCall.withdrawNFTFromUnexercisedOption(testNFT.address, 1, 1))
           .to.be.revertedWith("this option has not expired yet")
       })
 
-      it("should only allow original option seller to claim back nft", async function() {        
+      it("should only allow original option seller to claim back NFT", async function() {        
         await ethers.provider.send("evm_increaseTime", [86400 * 31])
         await ethers.provider.send("evm_mine")
 
         await expect(coveredCall.connect(accounts[2]).withdrawNFTFromUnexercisedOption(testNFT.address, 1, 1))
-         .to.be.revertedWith("you don't own this nft");
+         .to.be.revertedWith("you don't own this NFT");
       })
     })
   })
