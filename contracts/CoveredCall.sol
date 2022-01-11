@@ -32,8 +32,8 @@ contract CoveredCall is ERC721 {
     function createCoveredCall(address _nftAddress, uint _nftID, uint _strikePrice, uint _expirationTime, uint _premiumPrice) public returns(uint) {
         // require you to own nft and then transfer it to the contract as collateral
         require(IERC721(_nftAddress).ownerOf(_nftID) == msg.sender, "must own the NFT to sell a call option"); // this line handles the case where someone tries to create another option for the same after time is expirated. You will need to claim unexercised option first because this contract still owns the nft
-        require(_expirationTime <= 86400 * 365, "option expiration must be less than 1 year"); // 1 year maximum expiration
-        require(_expirationTime >= 86400 * 7, "option expiration must be greater than 1 day"); // 7 days minimum expiration
+        require(_expirationTime <= 86400 * 365, "option expiration time must be less than 1 year"); // 1 year maximum expiration
+        require(_expirationTime >= 86400 * 7, "option expiration time must be greater than 1 day"); // 7 days minimum expiration
         require(IERC721(_nftAddress).getApproved(_nftID) == address(this), "must approve nft to be transfered");
         IERC721(_nftAddress).transferFrom(msg.sender, address(this), _nftID); // this contract now owns the nft
 
