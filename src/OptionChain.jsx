@@ -186,7 +186,7 @@ class OptionChain extends React.Component {
   // renders historical data of all options ever created (including expired, bought, and exercised options)
   // TODO: for future implementations, we can filter through to only display available and active options to users
   async renderInitialOptions() {
-    let eventsFilter = coveredCall.filters.CoverCallCreated();
+    let eventsFilter = coveredCall.filters.CoveredCallCreated();
     let events = await coveredCall.queryFilter(eventsFilter);
     let currentOptions = [];
 

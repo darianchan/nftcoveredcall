@@ -1,5 +1,5 @@
 import React from 'react';
-import OptionChain from './OptionChain'; // the create option form (sell covered call)
+import OptionChain from './OptionChain';
 import './App.css';
 
 class App extends React.Component {
