@@ -23,7 +23,7 @@ function CreateCoveredCall(props) {
         <br />
 
         <input type="text" name="strikePrice" onChange={onChangeStrikePrice} />
-        <label>StrikePrice</label>
+        <label>strikePrice</label>
         <br />
 
         <input
@@ -31,7 +31,7 @@ function CreateCoveredCall(props) {
           name="expirationTime"
           onChange={onChangeExpirationTime}
         />
-        <label>ExpirationTime (in seconds)</label>
+        <label>expirationTime (in seconds)</label>
         <br />
 
         <input
@@ -39,7 +39,7 @@ function CreateCoveredCall(props) {
           name="premiumPrice"
           onChange={onChangePremiumPrice}
         />
-        <label>PremiumPrice</label>
+        <label>premiumPrice</label>
         <br />
 
         <input className="inputButton" type="submit" name="submit" value="Create Covered Call" />

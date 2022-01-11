@@ -1,4 +1,4 @@
-require('dotenv').config();
+require("dotenv").config();
 const { REACT_APP_NFT_ADDRESS, REACT_APP_COVEREDCALL_ADDRESS } = process.env;
 
 import { ethers } from "ethers";
@@ -110,13 +110,15 @@ class OptionChain extends React.Component {
             expirationTime,
             premiumPrice
           );
-        let receipt = await tx.wait(); // wait for block to be mined
+        let receipt = await tx.wait();
         let events = receipt.events;
         let coveredCallCreatedEvent = events[2].args;
         let optionID = coveredCallCreatedEvent._optionID.toNumber();
 
         if (receipt.status == 1) {
-          this.setState({ message: "covered call created successfuly" });
+          this.setState({
+            message: `covered call created successfuly with id: ${optionID}`,
+          });
           this.renderNewOptionCreated(nftAddress, optionID);
         } else if (receipt.status == 0) {
           this.setState({ message: "covered call creation failed" });
@@ -154,7 +156,7 @@ class OptionChain extends React.Component {
     if (typeof window.ethereum !== "undefined") {
       try {
         await nft.connect(signer).mintNFT();
-        console.log("mintyy mode");
+        console.log("nft minted");
       } catch (err) {
         console.log("Error: ", err);
       }
