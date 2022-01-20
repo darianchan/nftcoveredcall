@@ -25,14 +25,6 @@ describe("CoveredCall", function () {
     await testNFT.approve(coveredCall.address, 1);
   })
 
-  it("should deploy the coveredCall contract", async function() {
-    expect(coveredCall.address).to.exist;
-  });
-
-  it("should deploy the test NFT contract", async function() {
-    expect(testNFT.address).to.exist;
-  });
-
   it("should allow a user who owns an NFT to create a call option for sale", async function() {
     await coveredCall.createCoveredCall(testNFT.address, 1, ethers.utils.parseEther("10"), 86400 * 30, ethers.utils.parseEther("5"));
 
