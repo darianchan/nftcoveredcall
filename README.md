@@ -5,7 +5,7 @@ This repo implements selling and buying call options on NFTs. If you are the own
  
 To demonstrate the functionality of this project, the ERC721 available at address "0x498cD934C7c2f713f453EB17caE001EE3E468D1e" on the Rinkeby Testnet is made available for you to both mint and approve transfer. This is for demonstration purposes only on the front end and has no effect on the smart contract implementation
 
- ## Covered Call Explaination
+ ## Covered Call Explanation
  Please see the info [here](https://www.investopedia.com/terms/c/coveredcall.asp)
 
  ## Use Cases
@@ -13,7 +13,7 @@ To demonstrate the functionality of this project, the ERC721 available at addres
  
  This holds true for floor NFTs that can be priced according to the floor of the collection, but for NFTs with more rare traits, the pricing becomes arbitrary. 
 
- The pricing of NFTs with more rare traits then becomes up to the owner of the NFT to define a strike price and premium. This strike price should howver ALWAYS be above the floor price of a collection if the NFT is considered to be more rare. At this point, the option premium also becomes arbitrary and is soley up to the owner of the NFT to decide how much premium they would like to collect to make creating a covered call worth it (since creating a covered call can always result in an owner losing an NFT).
+ The pricing of NFTs with more rare traits then becomes up to the owner of the NFT to define a strike price and premium. This strike price should however ALWAYS be above the floor price of a collection if the NFT is considered to be more rare. At this point, the option premium also becomes arbitrary and is solely up to the owner of the NFT to decide how much premium they would like to collect to make creating a covered call worth it (since creating a covered call can always result in an owner losing an NFT).
  
  For example, if you bought an NFT for 100 ETH and the current floor price of the collection if 60 ETH, then you may define a strike price of 102 ETH and an option premium of 8 ETH. Once someone buys your covered call, you will collect 8 ETH regardless of the price movement of the NFT. This would be a win if the price of the NFT doesn't move much or even drops slightly. However, if the perceived price of the NFT goes up to 200 ETH, then the buyer of the covered call would exercise his call option and be able to buy your NFT for 102 ETH.
 
