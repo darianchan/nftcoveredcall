@@ -1,3 +1,4 @@
+// 0xAd62c224C1e9e9EC4601e452EDc3eCfd1Caa620c => test nft 2 address deployed through remix
 require("dotenv").config();
 const { REACT_APP_NFT_ADDRESS, REACT_APP_COVEREDCALL_ADDRESS } = process.env;
 
@@ -11,7 +12,7 @@ import ExerciseOption from "./ExerciseOption";
 import CreateCoveredCall from "./CreateCoveredCall";
 import ClaimNFT from "./ClaimNFT";
 const coveredCallAddress = REACT_APP_COVEREDCALL_ADDRESS;
-const nftAddress = REACT_APP_NFT_ADDRESS; // TODO: will have to make this dynamic to support all nfts in future implementation
+const nftAddress = REACT_APP_NFT_ADDRESS; // this is the starting nft address created
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 const coveredCall = new ethers.Contract(
@@ -27,6 +28,7 @@ class OptionChain extends React.Component {
 
     this.state = {
       nftAddress: null,
+      userNft: null,
       nftID: null,
       strikePrice: null,
       expirationTime: null,
@@ -134,11 +136,14 @@ class OptionChain extends React.Component {
   async onApproveTransfer(event) {
     event.preventDefault();
     let nftID = event.target.nftID.value;
+    let userNft = nft.attach(this.state.nftAddress);
+    console.log(userNft)
 
     if (typeof window.ethereum !== "undefined") {
       try {
         this.setState({ message: "approving nft transfer" });
-        let tx = await nft.connect(signer).approve(coveredCallAddress, nftID);
+        let tx = await userNft.connect(signer).approve(coveredCallAddress, nftID);
+        // let tx = await nft.connect(signer).approve(coveredCallAddress, nftID); => MADE CHANGES HERE
         let receipt = await tx.wait();
 
         if (receipt.status == 1) {
