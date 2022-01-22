@@ -1,3 +1,16 @@
+  *{
+    margin: 0;
+    padding: 0;
+  }
+
+  body,html{
+    overflow: hidden;
+  }
+
+  body{
+    height: 100%;
+  }
+  
   #tableWrapper {
     margin: auto;
     width: 85%;
@@ -27,9 +40,9 @@
     display: flex;
   }
 
-  form {
+  /* form {
     margin: auto;
-  }
+  } */
 
   #buttonWrapper {
     margin: auto;
@@ -67,4 +80,35 @@
     margin: 5px;
     border-radius: 6px;
     border: none;
+  }
+
+
+
+  /* covered call css */
+
+
+  .action{
+    position: fixed;
+    width: 100vw;
+    height: 100vw;
+  }
+  .modal{
+    position: fixed;
+    width: 100vw;
+    border: 1px solid red;
+  }
+
+  .modalContent{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 50%;
+    margin: 0 auto;
+  }
+
+  #modalBackground{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0,0,0,.4);
   }
