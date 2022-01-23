@@ -21,63 +21,69 @@ class ClaimNFT extends React.Component {
     event.preventDefault();
     const { coveredCall, signer } = this.props;
     const { nftAddress, nftID, optionID } = this.state;
-    
+
     try {
-      let tx = await coveredCall.connect(signer).withdrawNFTFromUnexercisedOption(nftAddress, nftID, optionID)
+      let tx = await coveredCall
+        .connect(signer)
+        .withdrawNFTFromUnexercisedOption(nftAddress, nftID, optionID);
       let receipt = await tx.wait();
 
       if (receipt.status == 1) {
-        this.setState({message: "claim nft successful"})
+        this.setState({ message: "claim nft successful" });
       }
     } catch (err) {
-      this.setState({message: err.error.message})
-      console.log("error:", err)
+      this.setState({ message: err.error.message });
+      console.log("error:", err);
     }
   }
 
   onChangeNftAddress(event) {
-    this.setState({nftAddress: event.target.value})
+    this.setState({ nftAddress: event.target.value });
   }
 
   onChangeNftID(event) {
-    this.setState({nftID: event.target.value})
+    this.setState({ nftID: event.target.value });
   }
 
   onChangeOptionID(event) {
-    this.setState({optionID: event.target.value})
+    this.setState({ optionID: event.target.value });
   }
 
   render() {
     return (
       <div className="action">
-        <form onSubmit={this.onClaimNft}>
-          <input
-            type="text"
-            name="nftAddress"
-            onChange={this.onChangeNftAddress}
-          />
-          <label>nftAddress</label>
-          <br />
+        <div className="modalBackground">
+          <div className="modal">
+            <form className="modalContent" onSubmit={this.onClaimNft}>
+              <input
+                type="text"
+                name="nftAddress"
+                onChange={this.onChangeNftAddress}
+              />
+              <label>NFT Address</label>
+              <br />
 
-          <input type="number" name="nftID" onChange={this.onChangeNftID} />
-          <label>nft id</label>
-          <br />
+              <input type="number" name="nftID" onChange={this.onChangeNftID} />
+              <label>NFT ID</label>
+              <br />
 
-          <input
-            type="number"
-            name="optionID"
-            onChange={this.onChangeOptionID}
-          />
-          <label>Option ID</label>
-          <br />
+              <input
+                type="number"
+                name="optionID"
+                onChange={this.onChangeOptionID}
+              />
+              <label>Option ID</label>
+              <br />
 
-          <input
-            className="inputButton"
-            type="submit"
-            name="submit"
-            value="Claim NFT"
-          />
-        </form>
+              <input
+                className="inputButton"
+                type="submit"
+                name="submit"
+                value="Claim NFT"
+              />
+            </form>
+          </div>
+        </div>
         {this.state.message ? <div>{this.state.message}</div> : null}
       </div>
     );

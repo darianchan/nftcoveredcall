@@ -95,20 +95,20 @@
   .modal{
     position: fixed;
     width: 100vw;
-    border: 1px solid red;
+    /* border: 1px solid red; */
   }
 
   .modalContent{
     display: flex;
     justify-content: center;
     flex-direction: column;
-    width: 50%;
+    width: 25%;
     margin: 0 auto;
   }
 
-  #modalBackground{
+  .modalBackground{
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,.4);
+    background: rgba(0,0,0,.8);
   }

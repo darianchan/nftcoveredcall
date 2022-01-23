@@ -13,17 +13,17 @@ function CreateCoveredCall(props) {
   } = props;
   return (
     <div className="action">
-      <div id = 'modalBackground'>
+      <div className = "modalBackground">
 
-        <div className = 'modal'>
+        <div className = "modal">
 
         <form className="modalContent" onSubmit={onCreateCoveredCall}>
           <input type="text" name="nftAddress" onChange={onChangeNftAddress} />
-          <label>nftAddress</label>
+          <label>NFT Address</label>
           <br />
 
           <input type="text" name="nftID" onChange={onChangeNftID} />
-          <label>nftID</label>
+          <label>NFT ID</label>
           <br />
 
           <input
@@ -31,7 +31,7 @@ function CreateCoveredCall(props) {
             name="strikePrice"
             onChange={onChangeStrikePrice}
           />
-          <label>strikePrice</label>
+          <label>Strike Price</label>
           <br />
 
           <input
@@ -39,7 +39,7 @@ function CreateCoveredCall(props) {
             name="expirationTime"
             onChange={onChangeExpirationTime}
           />
-          <label>expirationTime (in seconds)</label>
+          <label>Expiration Time (in seconds)</label>
           <br />
 
           <input
@@ -47,8 +47,10 @@ function CreateCoveredCall(props) {
             name="premiumPrice"
             onChange={onChangePremiumPrice}
           />
-          <label>premiumPrice</label>
+          <label>Premium Price</label>
           <br />
+
+          <button className="inputButton">Approve Transfer</button>
 
           <input
             className="inputButton"
@@ -60,19 +62,6 @@ function CreateCoveredCall(props) {
         </div>
       </div>
       <div>
-        {/* <form onSubmit={onApproveTransfer}>
-          <input type="number" name="nftID"></input>
-          <label>nftID</label>
-          <br />
-          <input
-            className="inputButton"
-            type="submit"
-            name="submit"
-            value="Approve nft transfer"
-          ></input>
-        </form> */}
-        {/* Minting is for demonstration purposes. Remove in future implementations to support all nfts*/}
-        {/* <button onClick={onMint}>Mint nft</button>{" "} */}
       </div>
     </div>
   );
