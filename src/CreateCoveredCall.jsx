@@ -39,7 +39,7 @@ function CreateCoveredCall(props) {
             name="expirationTime"
             onChange={onChangeExpirationTime}
           />
-          <label>Expiration Time (in seconds)</label>
+          <label>Expiration Time (Days From Now)</label>
           <br />
 
           <input

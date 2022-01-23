@@ -96,6 +96,7 @@ class OptionChain extends React.Component {
     let nftAddress = this.state.nftAddress;
     let nftID = this.state.nftID;
     let expirationTime = this.state.expirationTime;
+    expirationTime = expirationTime * 60 * 60 * 24 // format it to seconds
     let premiumPrice = ethers.utils.parseEther(
       this.state.premiumPrice.toString()
     );
