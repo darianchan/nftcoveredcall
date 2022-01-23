@@ -36,7 +36,7 @@ class BuyCallOption extends React.Component {
     const { nftAddress, optionID, eth } = this.state;
     const formattedEth = ethers.utils.parseEther(eth);
 
-    this.setState({ message: "loading... executing option" });
+    this.setState({ message: "EXERCISING OPTION..." });
 
     try {
       let tx = await coveredCall
@@ -44,10 +44,10 @@ class BuyCallOption extends React.Component {
         .executeCallOption(nftAddress, optionID, { value: formattedEth });
       let receipt = await tx.wait();
       if (receipt.status == 1) {
-        this.setState({ message: "option exercised success" });
+        this.setState({ message: "OPTION SUCCESSFULLY EXERCISED" });
       }
     } catch (err) {
-      this.setState({ message: "option exercise unsucessful" });
+      this.setState({ message: "OPTION EXERCISE FAILED" });
       console.log("error:", err);
     }
   }
@@ -56,6 +56,7 @@ class BuyCallOption extends React.Component {
     return (
       <div className="action">
         <div className="modalBackground">
+          <button onClick={this.props.onBackButton}> Go Back</button>
           <div className="modal">
             <form className="modalContent" onSubmit={this.onBuyOption}>
               <input
@@ -89,9 +90,11 @@ class BuyCallOption extends React.Component {
                 value="Exercise Option"
               />
             </form>
+            {this.state.message ? (
+              <div className="message">{this.state.message}</div>
+            ) : null}
           </div>
         </div>
-        {this.state.message ? <div>{this.state.message}</div> : null}
       </div>
     );
   }

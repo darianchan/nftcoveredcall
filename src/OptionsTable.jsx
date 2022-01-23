@@ -13,14 +13,14 @@ class OptionsTable extends React.Component {
             <table id="optionsTable">
             <thead>
                 <tr id="optionsTableHeader">
-                    <td>option id</td>
-                    <td>nft address</td>
-                    <td>nft id</td>
-                    <td>option strike</td>
-                    <td>option premium</td>
-                    <td>expiration time</td>
-                    <td>buyer</td>
-                    <td>seller</td>
+                    <td>Option ID</td>
+                    <td>NFT Address</td>
+                    <td>NFT ID</td>
+                    <td>Option Strike</td>
+                    <td>Option Premium</td>
+                    <td>Expiration Time</td>
+                    <td>Buyer</td>
+                    <td>Seller</td>
                 </tr>
             </thead>
             <tbody>

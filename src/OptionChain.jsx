@@ -1,7 +1,6 @@
 require("dotenv").config();
 const { REACT_APP_NFT_ADDRESS, REACT_APP_COVEREDCALL_ADDRESS } = process.env;
 
-import Navbar from './Navbar'
 import { ethers } from "ethers";
 import React, { useState } from "react";
 import CoveredCall from "./CoveredCall.json";
@@ -11,7 +10,7 @@ import BuyCallOption from "./BuyOption";
 import ExerciseOption from "./ExerciseOption";
 import CreateCoveredCall from "./CreateCoveredCall";
 import ClaimNFT from "./ClaimNFT";
-
+import logo from "./logo.png";
 
 const coveredCallAddress = REACT_APP_COVEREDCALL_ADDRESS;
 const nftAddress = REACT_APP_NFT_ADDRESS; // this is the starting nft address created
@@ -54,6 +53,7 @@ class OptionChain extends React.Component {
     this.onDisplayBuyOption = this.onDisplayBuyOption.bind(this);
     this.onDisplayExerciseOption = this.onDisplayExerciseOption.bind(this);
     this.onDisplayCalimNFT = this.onDisplayCalimNFT.bind(this);
+    this.onBackButton = this.onBackButton.bind(this);
   }
 
   componentDidMount() {
@@ -95,7 +95,7 @@ class OptionChain extends React.Component {
     let nftAddress = this.state.nftAddress;
     let nftID = this.state.nftID;
     let expirationTime = this.state.expirationTime;
-    expirationTime = expirationTime * 60 * 60 * 24 // format it to seconds
+    expirationTime = expirationTime * 60 * 60 * 24; // format it to seconds
     let premiumPrice = ethers.utils.parseEther(
       this.state.premiumPrice.toString()
     );
@@ -103,11 +103,9 @@ class OptionChain extends React.Component {
       this.state.strikePrice.toString()
     );
 
-    this.onApproveTransfer();
-
     if (typeof window.ethereum !== "undefined") {
       try {
-        this.setState({ message: "creating covered call" });
+        this.setState({ message: "CREATING COVERED CALL..." });
         let tx = await coveredCall
           .connect(signer)
           .createCoveredCall(
@@ -124,37 +122,38 @@ class OptionChain extends React.Component {
 
         if (receipt.status == 1) {
           this.setState({
-            message: `covered call created successfuly with id: ${optionID}`,
+            message: `COVERED CALL CREATED SUCCESSFULLY WITH ID: ${optionID}`,
           });
           this.renderNewOptionCreated(nftAddress, optionID);
         } else if (receipt.status == 0) {
-          this.setState({ message: "covered call creation failed" });
+          this.setState({ message: "COVERED CALL CREATION FAILED" });
         }
-        console.log(`call option created with id: ${optionID}`);
       } catch (err) {
-        this.setState({ message: "covered call creation failed" });
+        this.setState({ message: "COVERED CALL CREATION FAILED" });
         console.log("Error: ", err);
       }
     }
   }
 
   async onApproveTransfer(event) {
-    // event.preventDefault();
-    let nftID = this.state.nftID
+    event.preventDefault();
+    let nftID = this.state.nftID;
     let userNft = nft.attach(this.state.nftAddress);
 
     if (typeof window.ethereum !== "undefined") {
       try {
-        this.setState({ message: "approving nft transfer" });
-        let tx = await userNft.connect(signer).approve(coveredCallAddress, nftID);
+        this.setState({ message: "APPROVING NFT TRANSFER..." });
+        let tx = await userNft
+          .connect(signer)
+          .approve(coveredCallAddress, nftID);
         // let tx = await nft.connect(signer).approve(coveredCallAddress, nftID); => MADE CHANGES HERE
         let receipt = await tx.wait();
 
         if (receipt.status == 1) {
-          this.setState({ message: "successfully approved transfer" });
+          this.setState({ message: "SUCCESSFULLY APPROVED TRANSFER" });
         }
       } catch (err) {
-        this.setState({ message: "approve transfer failed" });
+        this.setState({ message: "APPROVE TRANSFER FAILED" });
         console.log("Error: ", err);
       }
     }
@@ -249,11 +248,14 @@ class OptionChain extends React.Component {
     this.setState({ userChoice: 4 });
   }
 
+  onBackButton() {
+    this.setState({ userChoice: 0 });
+  }
+
   render() {
     const { userChoice } = this.state;
     return (
       <div>
-        {/* <Navbar/> */}
         {userChoice === 0 ? (
           <div id="buttonWrapper">
             <button onClick={this.onDisplayCoveredCall}>
@@ -264,6 +266,9 @@ class OptionChain extends React.Component {
               Exercise Option
             </button>
             <button onClick={this.onDisplayCalimNFT}>Claim NFT</button>
+            <button id="metamaskButton" onClick={this.connectToMetamask}>
+              Connect Wallet
+            </button>
           </div>
         ) : null}
         {userChoice === 1 ? (
@@ -277,20 +282,32 @@ class OptionChain extends React.Component {
             onApproveTransfer={this.onApproveTransfer}
             onMint={this.onMint}
             message={this.state.message}
+            onBackButton={this.onBackButton}
           />
         ) : null}
         {userChoice === 2 ? (
-          <BuyCallOption coveredCall={coveredCall} signer={signer} />
+          <BuyCallOption
+            coveredCall={coveredCall}
+            signer={signer}
+            onBackButton={this.onBackButton}
+          />
         ) : null}
         {userChoice === 3 ? (
-          <ExerciseOption coveredCall={coveredCall} signer={signer} />
+          <ExerciseOption
+            coveredCall={coveredCall}
+            signer={signer}
+            onBackButton={this.onBackButton}
+          />
         ) : null}
         {userChoice === 4 ? (
-          <ClaimNFT coveredCall={coveredCall} signer={signer} />
+          <ClaimNFT
+            coveredCall={coveredCall}
+            signer={signer}
+            onBackButton={this.onBackButton}
+          />
         ) : null}
         {this.state.message ? <div>{this.state.message}</div> : null}
         <OptionsTable currentOptions={this.state.currentOptions} />
-        <button onClick={this.connectToMetamask}>Connect to metamask</button>
       </div>
     );
   }

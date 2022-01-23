@@ -29,7 +29,7 @@ class ClaimNFT extends React.Component {
       let receipt = await tx.wait();
 
       if (receipt.status == 1) {
-        this.setState({ message: "claim nft successful" });
+        this.setState({ message: "CLAIM NFT SUCCESSFUL" });
       }
     } catch (err) {
       this.setState({ message: err.error.message });
@@ -53,6 +53,7 @@ class ClaimNFT extends React.Component {
     return (
       <div className="action">
         <div className="modalBackground">
+          <button onClick={this.props.onBackButton}> Go Back</button>
           <div className="modal">
             <form className="modalContent" onSubmit={this.onClaimNft}>
               <input
@@ -82,9 +83,9 @@ class ClaimNFT extends React.Component {
                 value="Claim NFT"
               />
             </form>
+            {this.state.message ? <div>{this.state.message}</div> : null}
           </div>
         </div>
-        {this.state.message ? <div>{this.state.message}</div> : null}
       </div>
     );
   }

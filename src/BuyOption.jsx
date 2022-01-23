@@ -36,16 +36,16 @@ class BuyCallOption extends React.Component {
     const { nftAddress, optionID, eth } = this.state;
     const formattedEth = ethers.utils.parseEther(eth);
 
-    this.setState({ message: "loading... processing buy order" });
+    this.setState({ message: "PROCESSING BUY ORDER..." });
     let tx = await coveredCall
       .connect(signer)
       .buyCallOption(nftAddress, optionID, { value: formattedEth });
     let receipt = await tx.wait();
 
     if (receipt.status == 1) {
-      this.setState({ message: "call option bought success" });
+      this.setState({ message: "CALL OPTION SUCCESSFULLY BOUGHT" });
     } else if (receipt.status == 0) {
-      this.setState({ message: "call option purchase failed" });
+      this.setState({ message: "FAILED TO PURCHASE CALL OPTION" });
     }
   }
 
@@ -53,6 +53,7 @@ class BuyCallOption extends React.Component {
     return (
       <div className="action">
         <div className="modalBackground">
+          <button onClick={this.props.onBackButton}> Go Back</button>
           <div className="modal">
             <form className="modalContent" onSubmit={this.onBuyOption}>
               <input
@@ -86,9 +87,11 @@ class BuyCallOption extends React.Component {
                 value="Buy Option"
               />
             </form>
+            {this.state.message ? (
+              <div className="message">{this.state.message}</div>
+            ) : null}
           </div>
         </div>
-        {this.state.message ? <div>{this.state.message}</div> : null}
       </div>
     );
   }
