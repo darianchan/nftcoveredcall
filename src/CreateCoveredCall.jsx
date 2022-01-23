@@ -8,6 +8,7 @@ function CreateCoveredCall(props) {
     onChangeStrikePrice,
     onChangeExpirationTime,
     onChangePremiumPrice,
+    message,
     onApproveTransfer,
     onMint,
   } = props;
@@ -59,6 +60,7 @@ function CreateCoveredCall(props) {
             value="Create Covered Call"
           />
         </form>
+        {/* {message ? <div>{message}</div> : null} */}
         </div>
       </div>
       <div>

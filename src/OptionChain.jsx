@@ -1,4 +1,3 @@
-// 0xAd62c224C1e9e9EC4601e452EDc3eCfd1Caa620c => test nft 2 address deployed through remix
 require("dotenv").config();
 const { REACT_APP_NFT_ADDRESS, REACT_APP_COVEREDCALL_ADDRESS } = process.env;
 
@@ -139,7 +138,7 @@ class OptionChain extends React.Component {
     }
   }
 
-  async onApproveTransfer() {
+  async onApproveTransfer(event) {
     // event.preventDefault();
     let nftID = this.state.nftID
     let userNft = nft.attach(this.state.nftAddress);
@@ -277,6 +276,7 @@ class OptionChain extends React.Component {
             onChangePremiumPrice={this.onChangePremiumPrice}
             onApproveTransfer={this.onApproveTransfer}
             onMint={this.onMint}
+            message={this.state.message}
           />
         ) : null}
         {userChoice === 2 ? (

@@ -82,10 +82,11 @@
     border: none;
   }
 
-
+  input[type="text"] {
+    height: 20px;
+  }
 
   /* covered call css */
-
 
   .action{
     position: fixed;
@@ -95,7 +96,7 @@
   .modal{
     position: fixed;
     width: 100vw;
-    /* border: 1px solid red; */
+    margin-top: 25px;
   }
 
   .modalContent{
@@ -110,5 +111,5 @@
     position: fixed;
     width: 100vw;
     height: 100vh;
-    background: rgba(0,0,0,.8);
+    background: rgba(0,0,0,.75);
   }
