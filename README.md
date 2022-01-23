@@ -2,13 +2,12 @@
 
 ## Project Description
 This repo implements selling and buying call options on NFTs. If you are the owner of an NFT and would like to earn yield on it, you can implement a covered call. Beware that this may result in your losing your NFT if the other party decides to exercise the call option
- 
-To demonstrate the functionality of this project, the ERC721 available at address "0x498cD934C7c2f713f453EB17caE001EE3E468D1e" on the Rinkeby Testnet is made available for you to both mint and approve transfer. This is for demonstration purposes only on the front end and has no effect on the smart contract implementation
 
  ## Covered Call Explanation
  Please see the info [here](https://www.investopedia.com/terms/c/coveredcall.asp)
+ Example [here](https://corporatefinanceinstitute.com/resources/knowledge/trading-investing/covered-call/)
 
- ## Use Cases
+ ## How Options Are Priced
  The pricing of and NFT can be determined based off of the floor price for that collection from a marketplace like Opensea. 
  
  This holds true for floor NFTs that can be priced according to the floor of the collection, but for NFTs with more rare traits, the pricing becomes arbitrary. 
@@ -20,8 +19,7 @@ To demonstrate the functionality of this project, the ERC721 available at addres
 ## Future Implementations and Challenges
  - Improve UI to only display available and active options
  - We can consider writing a subgraph so that we can query for specific covered calls that have been bought, sold, active, etc...
- - Right now, it only supports the NFT at address "0x498cD934C7c2f713f453EB17caE001EE3E468D1e" on the Rinkeby Testnet, as a MVP of the product. In the future, this project should grow to be able to dynamically support any verified NFT through etherscan.
- - For the "expiration time" input field when creating a covered call, it is currently in seconds. Instead, we can create a list of expiration dates and options in future implementations (ex. every third Friday is an option expiration date).
+ - Use an oracle to update floor prices of top NFT collections and use that to price options
 
  ## How to Install and Run the Project
  - Clone the project to your local machine. In a .env file, set your API_URL = "your API URL here", PRIVATE_KEY = "your private key here", API_KEY = "your API KEY here", REACT_APP_NFT_ADDRESS = "0x498cD934C7c2f713f453EB17caE001EE3E468D1e" and REACT_APP_COVEREDCALL_ADDRESS = "0x46b7350BCdc199248c1d3f98c33A15c92f5D3Aaf"
@@ -30,12 +28,9 @@ To demonstrate the functionality of this project, the ERC721 available at addres
  - Go to localhost 3000 and you should see the app up and running there
  - The Dapp is also deployed using vercel and can be found here: https://nftcoveredcall.vercel.app/
 
- ### How to mint + approve NFT and create, buy, and execute a call option
+ ### How to create, buy, and execute a call option
  - Click the "connect to metamask" button and connect to your wallet
  - Click on the create covered call button
- - Click on mint button - this will mint you an NFT from the test NFT deployed
- - Input the id of the NFT that you just minted and click the approve button (found after you hit create covered call)
- - You now own the NFT and have approved the smart contract to be able to transfer your NFT on your behalf
- - Click on create covered call and fill out the nftAddress, nftID, strikePrice, expirationTime (enter this in seconds from now) and premium price (cost of option). This may take a second, and after successfully creating the covered call, you can refresh the page and see your newly created option displayed
- - to buy the call option, click on the "buy option" button and enter the nftAddress and optionID (displayed on the page), along with the required amount of eth to buy the option (premium price)
- - In order to exercise the option, click on "exercise option" and input the nftAddress and optionID along with the require amount of eth to purchase the NFT (option strike)
+ - Fill in the information and first approve the NFT, then after that is done, you can create a covered call
+ - To buy the call option, click on the "buy option" button and enter the NFT Address and Option ID (displayed on the page), along with the required amount of ETH to buy the option (premium price)
+ - In order to exercise the option, click on "exercise option" and input the NFT Address and Option ID along with the required amount of ETH to purchase the NFT (option strike)
