@@ -52,34 +52,42 @@ class BuyCallOption extends React.Component {
   render() {
     return (
       <div className="action">
-        <form onSubmit={this.onBuyOption}>
-          <input
-            type="text"
-            name="nftAddress"
-            onChange={this.onChangeNftAddress}
-          />
-          <label>nftAddress</label>
-          <br />
+        <div className="modalBackground">
+          <div className="modal">
+            <form className="modalContent" onSubmit={this.onBuyOption}>
+              <input
+                type="text"
+                name="nftAddress"
+                onChange={this.onChangeNftAddress}
+              />
+              <label>NFT Address</label>
+              <br />
 
-          <input
-            type="number"
-            name="optionID"
-            onChange={this.onChangeOptionID}
-          />
-          <label>Option ID</label>
-          <br />
+              <input
+                type="number"
+                name="optionID"
+                onChange={this.onChangeOptionID}
+              />
+              <label>Option ID</label>
+              <br />
 
-          <input type="string" name="ethAmount" onChange={this.onChangeEth} />
-          <label>Eth Amount (option premium)</label>
-          <br />
+              <input
+                type="string"
+                name="ethAmount"
+                onChange={this.onChangeEth}
+              />
+              <label>ETH Amount (option premium)</label>
+              <br />
 
-          <input
-            className="inputButton"
-            type="submit"
-            name="submit"
-            value="Buy Option"
-          />
-        </form>
+              <input
+                className="inputButton"
+                type="submit"
+                name="submit"
+                value="Buy Option"
+              />
+            </form>
+          </div>
+        </div>
         {this.state.message ? <div>{this.state.message}</div> : null}
       </div>
     );

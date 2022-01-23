@@ -2,6 +2,7 @@
 require("dotenv").config();
 const { REACT_APP_NFT_ADDRESS, REACT_APP_COVEREDCALL_ADDRESS } = process.env;
 
+import Navbar from './Navbar'
 import { ethers } from "ethers";
 import React, { useState } from "react";
 import CoveredCall from "./CoveredCall.json";
@@ -11,6 +12,8 @@ import BuyCallOption from "./BuyOption";
 import ExerciseOption from "./ExerciseOption";
 import CreateCoveredCall from "./CreateCoveredCall";
 import ClaimNFT from "./ClaimNFT";
+
+
 const coveredCallAddress = REACT_APP_COVEREDCALL_ADDRESS;
 const nftAddress = REACT_APP_NFT_ADDRESS; // this is the starting nft address created
 const provider = new ethers.providers.Web3Provider(window.ethereum);
@@ -100,6 +103,8 @@ class OptionChain extends React.Component {
       this.state.strikePrice.toString()
     );
 
+    this.onApproveTransfer();
+
     if (typeof window.ethereum !== "undefined") {
       try {
         this.setState({ message: "creating covered call" });
@@ -133,11 +138,10 @@ class OptionChain extends React.Component {
     }
   }
 
-  async onApproveTransfer(event) {
-    event.preventDefault();
-    let nftID = event.target.nftID.value;
+  async onApproveTransfer() {
+    // event.preventDefault();
+    let nftID = this.state.nftID
     let userNft = nft.attach(this.state.nftAddress);
-    console.log(userNft)
 
     if (typeof window.ethereum !== "undefined") {
       try {
@@ -249,6 +253,7 @@ class OptionChain extends React.Component {
     const { userChoice } = this.state;
     return (
       <div>
+        {/* <Navbar/> */}
         {userChoice === 0 ? (
           <div id="buttonWrapper">
             <button onClick={this.onDisplayCoveredCall}>

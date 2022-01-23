@@ -13,46 +13,55 @@ function CreateCoveredCall(props) {
   } = props;
   return (
     <div className="action">
-      <form onSubmit={onCreateCoveredCall}>
-        <input type="text" name="nftAddress" onChange={onChangeNftAddress} />
-        <label>nftAddress</label>
-        <br />
+      <div className = "modalBackground">
 
-        <input type="text" name="nftID" onChange={onChangeNftID} />
-        <label>nftID</label>
-        <br />
+        <div className = "modal">
 
-        <input type="text" name="strikePrice" onChange={onChangeStrikePrice} />
-        <label>strikePrice</label>
-        <br />
+        <form className="modalContent" onSubmit={onCreateCoveredCall}>
+          <input type="text" name="nftAddress" onChange={onChangeNftAddress} />
+          <label>NFT Address</label>
+          <br />
 
-        <input
-          type="text"
-          name="expirationTime"
-          onChange={onChangeExpirationTime}
-        />
-        <label>expirationTime (in seconds)</label>
-        <br />
+          <input type="text" name="nftID" onChange={onChangeNftID} />
+          <label>NFT ID</label>
+          <br />
 
-        <input
-          type="text"
-          name="premiumPrice"
-          onChange={onChangePremiumPrice}
-        />
-        <label>premiumPrice</label>
-        <br />
+          <input
+            type="text"
+            name="strikePrice"
+            onChange={onChangeStrikePrice}
+          />
+          <label>Strike Price</label>
+          <br />
 
-        <input className="inputButton" type="submit" name="submit" value="Create Covered Call" />
-      </form>
-      <div>
-        <form onSubmit={onApproveTransfer}>          
-          <input type="number" name="nftID"></input>
-          <label>nftID</label>
-          <br/>
-          <input className="inputButton" type="submit" name="submit" value="Approve nft transfer"></input>
+          <input
+            type="text"
+            name="expirationTime"
+            onChange={onChangeExpirationTime}
+          />
+          <label>Expiration Time (in seconds)</label>
+          <br />
+
+          <input
+            type="text"
+            name="premiumPrice"
+            onChange={onChangePremiumPrice}
+          />
+          <label>Premium Price</label>
+          <br />
+
+          <button className="inputButton">Approve Transfer</button>
+
+          <input
+            className="inputButton"
+            type="submit"
+            name="submit"
+            value="Create Covered Call"
+          />
         </form>
-        {/* Minting is for demonstration purposes. Remove in future implementations to support all nfts*/}
-        <button onClick={onMint}>Mint nft</button>{" "}
+        </div>
+      </div>
+      <div>
       </div>
     </div>
   );
