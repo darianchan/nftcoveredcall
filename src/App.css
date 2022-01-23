@@ -43,7 +43,7 @@
 
   #buttonWrapper {
     margin: auto;
-    margin-top: 100px;
+    margin-top: 25px;
     width: 75%;
     text-align: center;
   }
@@ -99,6 +99,19 @@
     margin-top: 25px;
     text-align: center;
     color: white;
+  }
+
+  #title {
+    margin-top: 25px;
+    font-size: xx-large;
+    text-align: center;
+    font-weight: bold;
+    color: white;
+  }
+
+  #description {
+    margin-top: 10px;
+    text-align: center;
   }
 
   /* covered call css */

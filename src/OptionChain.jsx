@@ -10,7 +10,6 @@ import BuyCallOption from "./BuyOption";
 import ExerciseOption from "./ExerciseOption";
 import CreateCoveredCall from "./CreateCoveredCall";
 import ClaimNFT from "./ClaimNFT";
-import logo from "./logo.png";
 
 const coveredCallAddress = REACT_APP_COVEREDCALL_ADDRESS;
 const nftAddress = REACT_APP_NFT_ADDRESS; // this is the starting nft address created
@@ -256,6 +255,8 @@ class OptionChain extends React.Component {
     const { userChoice } = this.state;
     return (
       <div>
+        <div id="title">NFT Options</div>
+        <div id="description">Earn yield by creating covered calls on your NFTs or buy a call option on an NFT below</div>
         {userChoice === 0 ? (
           <div id="buttonWrapper">
             <button onClick={this.onDisplayCoveredCall}>
