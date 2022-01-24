@@ -1,150 +1,146 @@
-  *{
-    margin: 0;
-    padding: 0;
-  }
+/* Options Table */
 
-  body,html{
-    overflow: hidden;
-  }
+#tableWrapper {
+  margin: auto;
+  width: 85%;
+  height: 500px;
+  border: 3px solid rgb(209, 47, 115);
+  padding: 10px;
+  margin-top: 75px;
+  overflow-y: scroll;
+}
 
-  body{
-    height: 100%;
-  }
-  
-  #tableWrapper {
-    margin: auto;
-    width: 85%;
-    height: 500px;
-    border: 3px solid rgb(209, 47, 115);
-    padding: 10px;
-    margin-top: 75px;
-    overflow-y: scroll;
-  }
+td {
+  padding: 0 20px;
+}
 
-  td {
-    padding: 0 20px;
-  }
-  
-  #optionsTableHeader {
-    font-weight: bold;
-  }
+#optionsTableHeader {
+  font-weight: bold;
+}
 
-  #optionsTableRow {
-    outline: thin solid rgb(209, 47, 115);
-  }
+#optionsTableRow {
+  outline: thin solid rgb(209, 47, 115);
+}
 
-  td {
-    padding-top: 5px;
-  }
+td {
+  padding-top: 5px;
+}
 
-  .action {
-    display: flex;
-  }
+/* Display Buttons */
 
-  #buttonWrapper {
-    margin: auto;
-    margin-top: 25px;
-    width: 75%;
-    text-align: center;
-  }
+.action {
+  display: flex;
+}
 
-  button {
-    border: none;
-    font-size: 16px;
-    border-radius: 6px;
-    padding: 8px;
-    margin: 5px;
-    background-color: rgb(209, 47, 115);
-    color: white;
-    font-family: Helvetica;
-    font-weight: 100;
-  }
+#buttonWrapper {
+  margin: auto;
+  margin-top: 25px;
+  width: 75%;
+  text-align: center;
+}
 
-  button:hover {
-    background-color: rgb(119, 11, 56);
-  }
+button {
+  border: none;
+  font-size: 16px;
+  border-radius: 6px;
+  padding: 8px;
+  margin: 5px;
+  background-color: rgb(209, 47, 115);
+  color: white;
+  font-family: Helvetica;
+  font-weight: 100;
+}
 
+button:hover {
+  background-color: rgb(119, 11, 56);
+}
 
-  body {
-    color: rgb(180, 180, 180);
-    background-color: #000000;
-    background-image: 
-    radial-gradient(at 100% 0%, hsla(253,16%,7%,1) 0, transparent 50%), 
-    radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), 
-    radial-gradient(at 0% 0%, hsla(339,49%,30%,1) 0, transparent 50%);
-    
-  }
+body {
+  color: rgb(180, 180, 180);
+  background-color: #000000;
+  background-image: radial-gradient(
+      at 100% 0%,
+      hsla(253, 16%, 7%, 1) 0,
+      transparent 50%
+    ),
+    radial-gradient(at 50% 0%, hsla(225, 39%, 30%, 1) 0, transparent 50%),
+    radial-gradient(at 0% 0%, hsla(339, 49%, 30%, 1) 0, transparent 50%);
+}
 
-  .inputButton {
-    background-color: rgb(209, 47, 115);
-    color: white;
-    font-family: Helvetica;
-    font-weight: 100;
-    font-size: 15px;
-    padding: 6px;
-    margin: 5px;
-    border-radius: 6px;
-    border: none;
-  }
+/* Inputs */
 
-  .inputButton:hover {
-    background-color: rgb(119, 11, 56);
-  }
+.inputButton {
+  background-color: rgb(209, 47, 115);
+  color: white;
+  font-family: Helvetica;
+  font-weight: 100;
+  font-size: 15px;
+  padding: 6px;
+  margin: 5px;
+  border-radius: 6px;
+  border: none;
+}
 
-  input[type="text"] {
-    height: 20px;
-  }
+.inputButton:hover {
+  background-color: rgb(119, 11, 56);
+}
 
-  .message {
-    margin-top: 25px;
-    text-align: center;
-    color: white;
-  }
+input[type="text"] {
+  height: 20px;
+}
 
-  #title {
-    margin-top: 25px;
-    font-size: xx-large;
-    text-align: center;
-    font-weight: bold;
-    color: white;
-  }
+.message {
+  margin-top: 25px;
+  text-align: center;
+  color: white;
+}
 
-  #description {
-    margin-top: 10px;
-    text-align: center;
-  }
+/* Title and Description */
 
-  /* covered call css */
+#title {
+  margin-top: 45px;
+  font-size: xx-large;
+  text-align: center;
+  font-weight: bold;
+  color: white;
+}
 
-  .action{
-    position: fixed;
-    width: 100vw;
-    height: 100vw;
-  }
-  .modal{
-    position: fixed;
-    width: 100vw;
-    margin-top: 25px;
-  }
+#description {
+  margin-top: 10px;
+  text-align: center;
+}
 
-  .modalContent{
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    width: 25%;
-    margin: 0 auto;
-  }
+/* Form Actions */
 
-  .modalBackground{
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
-    background: rgba(0,0,0,.75);
-  }
+.action {
+  position: fixed;
+  width: 100vw;
+  height: 100vw;
+}
+.modal {
+  position: fixed;
+  width: 100vw;
+  margin-top: 25px;
+}
 
-  #approveButton {
-    margin: auto;
-    display: flex;
-    align-items: center;
-    margin-top: 10px;
-  }
+.modalContent {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  width: 25%;
+  margin: 0 auto;
+}
+
+.modalBackground {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.75);
+}
+
+#approveButton {
+  margin: auto;
+  display: flex;
+  align-items: center;
+  margin-top: 10px;
+}
