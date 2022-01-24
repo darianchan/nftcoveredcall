@@ -27,7 +27,7 @@ With this approach, we can imagine separate NFT vaults, where the owner of an NF
  - We can consider writing a subgraph so that we can query for specific covered calls that have been bought, sold, active, etc...
 
  ## How to Install and Run the Project
- - Clone the project to your local machine. In a .env file, set your API_URL, API_KEY, PRIVATE_KEY, REACT_APP_NFT_ADDRESS = "0x498cD934C7c2f713f453EB17caE001EE3E468D1e" and REACT_APP_COVEREDCALL_ADDRESS = "0x46b7350BCdc199248c1d3f98c33A15c92f5D3Aaf"
+ - Clone the project to your local machine. In a .env file, set your API_URL, API_KEY, PRIVATE_KEY, REACT_APP_NFT_ADDRESS = "0x0F8C9B79c6fBBae07D909c83e97A310dF18d0362" and REACT_APP_COVEREDCALL_ADDRESS = "0x57766640F458E67D133F853b1a7574C5b5E3C6e0"
  - Run `npm install` to install all dependencies
  - Run `npm run start` to start up the front end
  - Go to localhost 3000 and you should see the app up and running there
