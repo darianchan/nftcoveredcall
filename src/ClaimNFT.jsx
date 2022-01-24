@@ -53,7 +53,7 @@ class ClaimNFT extends React.Component {
     return (
       <div className="action">
         <div className="modalBackground">
-          <button onClick={this.props.onBackButton}> Go Back</button>
+          <button onClick={this.props.onBackButton}>Back</button>
           <div className="modal">
             <form className="modalContent" onSubmit={this.onClaimNft}>
               <input

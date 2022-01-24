@@ -11,12 +11,11 @@ function CreateCoveredCall(props) {
     message,
     onApproveTransfer,
     onBackButton,
-    onMint,
   } = props;
   return (
     <div className="action">
       <div className="modalBackground">
-        <button onClick={onBackButton}> Go Back</button>
+        <button onClick={onBackButton}>Back</button>
         <div className="modal">
           <form className="modalContent" onSubmit={onCreateCoveredCall}>
             <input

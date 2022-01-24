@@ -2,7 +2,7 @@ require("dotenv").config();
 const { REACT_APP_NFT_ADDRESS, REACT_APP_COVEREDCALL_ADDRESS } = process.env;
 
 import { ethers } from "ethers";
-import React, { useState } from "react";
+import React from "react";
 import CoveredCall from "./CoveredCall.json";
 import Nft from "./TestNFT.json";
 import OptionsTable from "./OptionsTable";
@@ -12,7 +12,7 @@ import CreateCoveredCall from "./CreateCoveredCall";
 import ClaimNFT from "./ClaimNFT";
 
 const coveredCallAddress = REACT_APP_COVEREDCALL_ADDRESS;
-const nftAddress = REACT_APP_NFT_ADDRESS; // this is the starting nft address created
+const nftAddress = REACT_APP_NFT_ADDRESS;
 const provider = new ethers.providers.Web3Provider(window.ethereum);
 const signer = provider.getSigner();
 const coveredCall = new ethers.Contract(
@@ -44,7 +44,6 @@ class OptionChain extends React.Component {
     this.onChangeExpirationTime = this.onChangeExpirationTime.bind(this);
     this.onChangePremiumPrice = this.onChangePremiumPrice.bind(this);
     this.onCreateCoveredCall = this.onCreateCoveredCall.bind(this);
-    this.onMint = this.onMint.bind(this);
     this.onApproveTransfer = this.onApproveTransfer.bind(this);
     this.renderNewOptionCreated = this.renderNewOptionCreated.bind(this);
     this.renderInitialOptions = this.renderInitialOptions.bind(this);
@@ -94,7 +93,7 @@ class OptionChain extends React.Component {
     let nftAddress = this.state.nftAddress;
     let nftID = this.state.nftID;
     let expirationTime = this.state.expirationTime;
-    expirationTime = expirationTime * 60 * 60 * 24; // format it to seconds
+    expirationTime = expirationTime * 60 * 60 * 24; // format from days to seconds
     let premiumPrice = ethers.utils.parseEther(
       this.state.premiumPrice.toString()
     );
@@ -145,7 +144,6 @@ class OptionChain extends React.Component {
         let tx = await userNft
           .connect(signer)
           .approve(coveredCallAddress, nftID);
-        // let tx = await nft.connect(signer).approve(coveredCallAddress, nftID); => MADE CHANGES HERE
         let receipt = await tx.wait();
 
         if (receipt.status == 1) {
@@ -153,18 +151,6 @@ class OptionChain extends React.Component {
         }
       } catch (err) {
         this.setState({ message: "APPROVE TRANSFER FAILED" });
-        console.log("Error: ", err);
-      }
-    }
-  }
-
-  async onMint() {
-    //TODO: this is for demonstration purposes only - remove in production
-    if (typeof window.ethereum !== "undefined") {
-      try {
-        await nft.connect(signer).mintNFT();
-        console.log("nft minted");
-      } catch (err) {
         console.log("Error: ", err);
       }
     }
@@ -192,8 +178,6 @@ class OptionChain extends React.Component {
     this.setState({ currentOptions: joined });
   }
 
-  // renders historical data of all options ever created (including expired, bought, and exercised options)
-  // TODO: for future implementations, we can filter through to only display available and active options to users
   async renderInitialOptions() {
     let eventsFilter = coveredCall.filters.CoveredCallCreated();
     let events = await coveredCall.queryFilter(eventsFilter);
@@ -256,7 +240,10 @@ class OptionChain extends React.Component {
     return (
       <div>
         <div id="title">NFT Options</div>
-        <div id="description">Earn yield by creating covered calls on your NFTs or buy a call option on an NFT below</div>
+        <div id="description">
+          Earn yield by creating covered calls on your NFTs or buy a call option
+          on an NFT below
+        </div>
         {userChoice === 0 ? (
           <div id="buttonWrapper">
             <button onClick={this.onDisplayCoveredCall}>
@@ -281,7 +268,6 @@ class OptionChain extends React.Component {
             onChangeExpirationTime={this.onChangeExpirationTime}
             onChangePremiumPrice={this.onChangePremiumPrice}
             onApproveTransfer={this.onApproveTransfer}
-            onMint={this.onMint}
             message={this.state.message}
             onBackButton={this.onBackButton}
           />

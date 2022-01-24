@@ -3,7 +3,7 @@ pragma solidity ^0.8.9;
 
 import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-// this nft is used for demonstration purposed only
+// Test NFT for ERC721 approval methods
 contract TestNFT is ERC721 {
     uint id = 0;
 
