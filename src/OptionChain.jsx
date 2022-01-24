@@ -293,7 +293,6 @@ class OptionChain extends React.Component {
             onBackButton={this.onBackButton}
           />
         ) : null}
-        {this.state.message ? <div>{this.state.message}</div> : null}
         <OptionsTable currentOptions={this.state.currentOptions} />
       </div>
     );
