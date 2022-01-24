@@ -5,7 +5,7 @@ This repo implements selling and buying call options on NFTs. If you are the own
 
  ## Covered Call Explanation
  - Please see the info [here](https://www.investopedia.com/terms/c/coveredcall.asp).
- - Example explaination [here](https://corporatefinanceinstitute.com/resources/knowledge/trading-investing/covered-call/).
+ - Example explanation [here](https://corporatefinanceinstitute.com/resources/knowledge/trading-investing/covered-call/).
 
  ## How Call Options on NFTs Are Priced
  The pricing of an NFT can be determined based off of the floor price for that collection from a marketplace like Opensea. 
@@ -18,7 +18,12 @@ This repo implements selling and buying call options on NFTs. If you are the own
 
 ## Future Implementations and Challenges
  - In a future implementation, we can consider consider setting up a price oracle that pulls data from Opensea's API regarding collection floor prices. With this approach, we can consider setting up epochs (such as every 30 days), where we can suggest predetermined strike prices for top NFT collections and the NFT owner can then select from these various strike prices. A good example of options with epochs is [Dopex](https://app.dopex.io/ssov).
- - Improve UI to only display available and active options
+
+  If we were to consider an approach with epochs, then European style options may make the most sense, where a buyer of a call option can only choose to exercise his option as the end of that epoch (at the expiration date), whereas we are currently implementing an American style option, where a buyer of a call option can choose to exercise his call option anytime before the expiration date.
+
+  With this approach, we can imagine seperate NFT vaults, where the owner of an NFT can stake their NFT to create a covered call on that NFT. For example, we can have a Bored Ape vault, where owners of Bored Ape NFTs can choose to stake their NFT and create a covered call on their NFT. This takes out the need for any market makers and creates liquidity for call options on top NFT collections. In return, the Bored Ape owner will collect the yield (option premium) on the call option bought, but keep in mind that the Bored Ape owner is ALWAYS subjected to losing his NFT. At the end of this epoch, if the call option on their NFT is not exercised, then they will recieved their Bored Ape back plus, the yield generated on it (option premium).
+
+ - Improve UI to only display available and active options.
  - We can consider writing a subgraph so that we can query for specific covered calls that have been bought, sold, active, etc...
 
  ## How to Install and Run the Project
